@@ -1,22 +1,33 @@
-/*產生fail function*/ 
-void kmp_fail(char *s,int len,int *fail){
-	int id=-1;
-	fail[0]=-1;
-	for(int i=1;i<len;++i){
-		while(~id&&s[id+1]!=s[i])id=fail[id];
-		if(s[id+1]==s[i])++id;
-		fail[i]=id;
-	}
-}
-/*以字串B匹配字串A，傳回匹配成功的數量(用B的fail)*/
-int kmp_match(char *A,int lenA,char *B,int lenB,int *fail){
-	int id=-1,ans=0;
-	for(int i=0;i<lenA;++i){
-		while(~id&&B[id+1]!=A[i])id=fail[id];
-		if(B[id+1]==A[i])++id;
-		if(id==lenB-1){/*匹配成功*/
-			++ans, id=fail[id];
-		}
-	}
-	return ans;
+// 在文本串 text 中查找模式串 pattern，返回所有成功匹配的位置（pattern[0] 在 text 中的下标）
+vector<int> kmp(const string& text, const string& pattern) {
+    int m = pattern.size();
+    vector<int> pi(m);
+    int cnt = 0;
+    for (int i = 1; i < m; i++) {
+        char b = pattern[i];
+        while (cnt && pattern[cnt] != b) {
+            cnt = pi[cnt - 1];
+        }
+        if (pattern[cnt] == b) {
+            cnt++;
+        }
+        pi[i] = cnt;
+    }
+
+    vector<int> pos;
+    cnt = 0;
+    for (int i = 0; i < text.size(); i++) {
+        char b = text[i];
+        while (cnt && pattern[cnt] != b) {
+            cnt = pi[cnt - 1];
+        }
+        if (pattern[cnt] == b) {
+            cnt++;
+        }
+        if (cnt == m) {
+            pos.push_back(i - m + 1);
+            cnt = pi[cnt - 1];
+        }
+    }
+    return pos;
 }

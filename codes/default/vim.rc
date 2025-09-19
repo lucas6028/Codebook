@@ -1,0 +1,26 @@
+" Colors and appearance
+colorscheme default
+set background=dark
+
+" Cursor highlighting
+set cursorline                  " Highlight current line
+highlight CursorLine cterm=bold ctermbg=none ctermfg=none
+
+" Line numbers and indentation
+set number                      " Show line numbers
+set relativenumber              " Show relative line numbers
+set cindent                     " C-style indentation
+set autowrite                   " Automatically save before commands like :next
+
+" Tab and indentation settings
+set tabstop=4                   " Width of tab character
+set shiftwidth=4                " Width of indentation
+set softtabstop=4               " Makes backspace work properly
+set expandtab                   " Use spaces instead of tabs
+set autoindent                  " Maintain indentation from the previous line
+set smartindent                 " Smart indentation
+filetype plugin indent on       " Enable language-specific indentation
+
+" Custom mappings
+imap jk <ESC>
+inoremap {<CR> {<CR>}<Esc>ko
