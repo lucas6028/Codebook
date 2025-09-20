@@ -1,3 +1,4 @@
+// 1-based
 struct Fenwick {
     int n;
     vector<int> bit;
@@ -11,7 +12,7 @@ struct Fenwick {
         return res;
     }
     int query(int l, int r) {
-        return query(r) + query(l-1);
+        return query(r) - query(l-1);
     }
 };
 
@@ -20,7 +21,7 @@ int main() {
     for (int i = 1; i < n; ++i) {
         fw.update(i, a[i]);
     }
-    cout << fw.query(3, 7) << "\\n";  // range sum [3..7] = 7
+    cout << fw.query(3, 7) << "\\n";  // range sum [3..7]
     int current = ...; // old value at idx
     int newVal  = ...; // new value you want
     fw.update(idx, newVal - current);
