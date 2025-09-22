@@ -336,6 +336,20 @@ S = a \cdot \frac{r^n - 1}{r - 1}
 \[
 a + b = (a \oplus b) + 2 \cdot (a \,\&\, b)
 \]
+\item OR 與 AND 的關係：
+\[
+a \,|\, b = a + b - (a \,\&\, b)
+\]
+\item 交換兩數：
+\[
+a = a \oplus b, \quad b = a \oplus b, \quad a = a \oplus b
+\]
+\item 取得最低位的 $1$：
+\[x \,\&\, (-x)
+\]
+\item 清除最低位的 $1$：
+\[x \,\&\, (x - 1)
+\]
 \end{enumerate}
 
 \subsubsection{數論公式}
