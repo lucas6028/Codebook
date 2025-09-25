@@ -1,6 +1,3 @@
-#include <iostream>
-using namespace std;
-
 // 2D Point structure
 struct Point {
     double x, y;
