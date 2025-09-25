@@ -1,3 +1,8 @@
+// If cross(a,b,c) > 0, c is to the left of line ab
+// If cross(a,b,c) < 0, c is to the right of line ab
+// If cross(a,b,c) = 0, a, b, c are collinear
+
+// point struct version
 // 2D Point structure
 struct Point {
     double x, y;
@@ -10,6 +15,11 @@ double cross(const Point& a, const Point& b, const Point& c) {
            (b.y - a.y) * (c.x - a.x);
 }
 
-// If cross(a,b,c) > 0, c is to the left of line ab
-// If cross(a,b,c) < 0, c is to the right of line ab
-// If cross(a,b,c) = 0, a, b, c are collinear
+// std::complex version
+typedef std::complex<double> point;
+#define x real()
+#define y imag()
+
+double cross(const point &a, const point &b) {
+    return (std::conj(a) * b).imag();
+}
