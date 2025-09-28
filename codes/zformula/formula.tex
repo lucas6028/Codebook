@@ -352,6 +352,24 @@ a = a \oplus b, \quad b = a \oplus b, \quad a = a \oplus b
 \]
 \end{enumerate}
 
+\subsubsection{除數與倍數}
+\begin{enumerate}\itemsep = -3pt
+\item LCM:
+\[
+\text{lcm}(a, b) = \frac{a \times b}{\gcd(a, b)}
+\]
+
+\item LCM (prime factorization):
+\[
+\text{lcm}(a, b) = \prod_{p \in \text{primes}} p^{\max(e_a, e_b)}
+\]
+
+\item GCD (prime factorization):
+\[
+\gcd(a, b) = \prod_{p \in \text{primes}} p^{\min(e_a, e_b)}
+\] 
+\end{enumerate}
+
 \subsubsection{數論公式}
 \item Bezout's identity：
 \[
@@ -369,5 +387,34 @@ a^{\,b^c} \equiv a^{\,\text{power\_mod}(b, c, \, \text{MOD}-1)} \pmod{\text{MOD}
 \text{Area} = \sqrt{s(s-a)(s-b)(s-c)}, \quad s = \frac{a+b+c}{2}
 \]
 
+\item 兩圓相交弦長：
+\[
+\text{Length} = 2 \cdot \sqrt{\frac{(s-a)(s-b)}{s}}, \quad s = \frac{r_1 + r_2 + d}{2}
+\]
+
+\item 三角形內切圓半徑：
+\[
+r = \frac{2 \cdot \text{Area}}{a + b + c}
+\]
+
+\item 三角形外接圓半徑：
+\[
+R = \frac{abc}{4 \cdot \text{Area}}
+\]
+
+\item 三角形重心：
+\[
+G = \left(\frac{x_1 + x_2 + x_3}{3}, \frac{y_1 + y_2 + y_3}{3}\right)
+\]
+
+\item 三角形垂心：
+\[
+H = \left(\frac{x_1 \tan A + x_2 \tan B + x_3 \tan C}{\tan A + \tan B + \tan C}, \frac{y_1 \tan A + y_2 \tan B + y_3 \tan C}{\tan A + \tan B + \tan C}\right)
+\]
+
+\item 三角形內心：
+\[
+I = \left(\frac{a x_1 + b x_2 + c x_3}{a + b + c}, \frac{a y_1 + b y_2 + c y_3}{a + b + c}\right)
+\]
 
 %\end{document}
