@@ -387,6 +387,22 @@ a^{\,b^c} \equiv a^{\,\text{power\_mod}(b, c, \, \text{MOD}-1)} \pmod{\text{MOD}
 \]
 \end{enumerate}
 
+\item Pythagorean theorem：
+\[
+(n^2 + m^2, 2nm, n^2 - m^2), \quad n > m > 0
+\]
+
+\item Wilson's theorem：
+\[
+(p-1)! \pmod{p} = n-1 \quad \text{（$p$ 為質數）}
+\]
+
+\item Catalan number：
+\[
+C_n = \frac{1}{n+1} \binom{2n}{
+n} = \frac{(2n)!}{(n+1)!n!}
+\]
+
 \item 海龍公式：
 \[
 \text{Area} = \sqrt{s(s-a)(s-b)(s-c)}, \quad s = \frac{a+b+c}{2}
@@ -420,6 +436,11 @@ H = \left(\frac{x_1 \tan A + x_2 \tan B + x_3 \tan C}{\tan A + \tan B + \tan C},
 \item 三角形內心：
 \[
 I = \left(\frac{a x_1 + b x_2 + c x_3}{a + b + c}, \frac{a y_1 + b y_2 + c y_3}{a + b + c}\right)
+\]
+
+\item 奇(偶)長度陣列子數量：
+\[
+n = \frac{(i + 1) * (n - i) + 1}{2}
 \]
 
 %\end{document}
