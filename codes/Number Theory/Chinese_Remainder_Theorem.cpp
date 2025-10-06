@@ -11,6 +11,9 @@ pair<ll, ll> CRT(const vector<pair<ll, ll>>& congruences) {
 
 // example usage
 int main() {
+    // x ≡ 2 (mod 3)
+    // x ≡ 3 (mod 5)
+    // x ≡ 2 (mod 7)
     vector<pair<ll, ll>> congruences = {{3, 2}, {5, 3}, {7, 2}};
     auto [M, sol] = CRT(congruences);
     cout << "M: " << M << ", x: " << sol << endl; // M: 105, x: 23
