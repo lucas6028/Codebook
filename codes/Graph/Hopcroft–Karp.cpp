@@ -1,4 +1,4 @@
-// maximum cardinality bipartite matching
+// maximum cardinality bipartite matching in unweighted bipartite graph
 // Hopcroft–Karp algorithm - O(E√V)
 class bipartiteGraph {
     int nx, ny;
