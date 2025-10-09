@@ -103,7 +103,6 @@ void solve() {
                 else {
                     l = m + 1; 
                 }
-                //cout << l << " " << r << "\n";
             }
             if (ans == -1) cout << "invalid\n";
             else cout << to_val[ans] << "\n";

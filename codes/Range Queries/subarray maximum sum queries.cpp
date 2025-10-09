@@ -84,7 +84,6 @@ void solve() {
             while (l <= r) {
                 int m = l + (r - l) / 2;
                 int rk = query(0, m + 1);
-                //printf("(m, rk): %lld, %lld\n", m, rk);
                 if (rk >= k) {
                     ans = m;
                     r = m - 1;
@@ -92,7 +91,6 @@ void solve() {
                 else {
                     l = m + 1; 
                 }
-                //cout << l << " " << r << "\n";
             }
             if (ans == -1) cout << "invalid\n";
             else cout << to_val[ans] << "\n";

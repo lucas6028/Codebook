@@ -4,11 +4,7 @@
 using namespace std;
 
 #ifdef LOCAL
-void dbg() { cerr << '\\n'; }
-template<class T, class ...U> void dbg(T a, U ...b) { cerr << a << ' ', dbg(b...); }
-template<class T> void org(T l, T r) { while (l != r) cerr << *l++ << ' '; cerr << '\\n'; }
-#define debug(args...) (dbg("#> (" + string(#args) + ") = (", args, ")"))
-#define orange(args...) (cerr << "#> [" + string(#args) + ") = ", org(args))
+#include "../debug.h"
 #else
 #pragma GCC optimize("O3,unroll-loops")
 #pragma GCC target("avx2,bmi,bmi2,lzcnt,popcnt")
