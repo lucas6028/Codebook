@@ -1,28 +1,34 @@
-// 1-based
 struct Fenwick {
     int n;
-    vector<int> bit;
-    Fenwick(int _n=0): n(_n), bit(n+1, 0) {}
-    void update(int idx, int val) {
-        for (; idx <= n; idx += idx & -idx) bit[idx] += val;
+    vector<int> bit, prefix;
+    Fenwick(int _n) : n(_n), bit(n + 1, 0), prefix(n + 1, 0) {}
+    void update(int i, int delta) {
+        for (; i <= n; i += i & -i) {
+            bit[i] += delta;
+        }
     }
-    int query(int idx) {
-        int res = 0;
-        for (; idx > 0; idx -= idx & -idx) res += bit[idx];
-        return res;
+    int query(int i) {
+        int ans = 0;
+        for (; i >= 1; i -= i & -i) {
+            ans += bit[i];
+        }
+        return ans;
     }
-    int query(int l, int r) {
-        return query(r) - query(l-1);
+    int range(int l, int r) {
+        return query(r) - query(l - 1);
     }
 };
 
 int main() {
-    Fenwick fw(n);
-    for (int i = 1; i < n; ++i) {
-        fw.update(i, a[i]);
-    }
-    cout << fw.query(3, 7) << "\\n";  // range sum [3..7]
-    int current = ...; // old value at idx
-    int newVal  = ...; // new value you want
-    fw.update(idx, newVal - current);
+    int n = 5;
+    vector<int> a = {0, 1, 2, 3, 4, 5};  // 1-indexed
+    Fenwick ft(n);
+    for (int i = 1; i <= n; ++i) ft.update(i, a[i]);
+
+    cout << ft.query(3) << "\n";    // 6
+    cout << ft.range(2, 4) << "\n"; // 9
+
+    ft.update(3, 10);                    // a[3] += 10
+    cout << ft.query(3) << "\n";    // 16
+    cout << ft.range(1, 5) << "\n"; // 25
 }
