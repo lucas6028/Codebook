@@ -2,24 +2,25 @@
 using namespace __gnu_pbds;
 
 template <class T>
-using Tree =
+using ordered_set =
     tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
 
 int main() {
 	int n;
 	cin >> n;
-	Tree<int> ist;
+	ordered_set<int> st;
 	vector<int> p(n);
 	for (int i = 0; i < n; i++) {
-		ist.insert(i);
+		st.insert(i);
 		cin >> p[i];
 	}
 	for (int i = 0; i < n; i++) {
 		int ind;
 		cin >> ind;
 		ind--;
-		int pos = *ist.find_by_order(ind);
-		ist.erase(pos);
+		int pos = *st.find_by_order(ind);
+		cout << st.order_of_key(pos) << ' ';
+		st.erase(pos);
 		cout << p[pos] << (i == n - 1 ? '\n' : ' ');
 	}
 }
