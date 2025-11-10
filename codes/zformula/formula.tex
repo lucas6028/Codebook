@@ -21,86 +21,13 @@
 	\item $I(G)=Cv(G)$
 	\item $M(G)=Ce(G)$
 	\end{enumerate}
-\item 最大權閉合圖：
-	\begin{enumerate}\itemsep = -3pt
-	\item $C(u,v)=\infty ,(u,v)\in E$
-	\item $C(S,v)=W_v ,W_v>0$
-	\item $C(v,T)=-W_v ,W_v<0$
-	\item ans=$\sum_{W_v>0} W_v-flow(S,T)$
-	\end{enumerate}
-\item 最大密度子圖：
-	\begin{enumerate}\itemsep = -1pt
-	\item 求$max\left(\frac{W_e+W_v}{|V'|}\right),e \in E',v \in V'$
-	\item $U=\sum_{v \in V}2W_v+\sum_{e \in E} W_e$
-	\item $C(u,v)=W_{(u,v)} ,(u,v)\in E$，雙向邊
-	\item $C(S,v)=U ,v \in V$
-	\item $D_u=\sum_{(u,v) \in E} W_{(u,v)}$
-	\item $C(v,T)=U+2g-D_v-2W_v ,v \in V$
-	\item 二分搜$g$：\\$l=0,r=U,eps=1/n^2$\\if($(U\times|V|-flow(S,T))/2>0$) $l=mid$\\else $r=mid$
-	\item ans=$min\_cut(S,T)$
-	\item $|E|=0$要特殊判斷
-	\end{enumerate}
-\item 弦圖：
-	\begin{enumerate}\itemsep = -3pt
-	\item 點數大於3的環都要有一條弦
-	\item 完美消除序列從後往前依次給每個點染色，給每個點染上可以染的最小顏色
-	\item 最大團大小=色數
-	\item 最大獨立集:完美消除序列從前往後能選就選
-	\item 最小團覆蓋:最大獨立集的點和他延伸的邊構成
-	\item 區間圖是弦圖
-	\item 區間圖的完美消除序列:將區間按造又端點由小到大排序
-	\item 區間圖染色:用線段樹做
-	\end{enumerate}
 \end{enumerate}
-\subsubsection{dinic特殊圖複雜度}
-\begin{enumerate}\itemsep = -5pt
-\item 單位流：$O\left(min\left(V^{3/2},E^{1/2}\right)E\right)$
-\item 二分圖：$O\left(V^{1/2}E\right)$
-\end{enumerate}
-
-\subsubsection{0-1分數規劃}
-$x_i=\{0,1\}$，$x_i$可能會有其他限制，求$max\left(\frac{\sum B_ix_i}{\sum C_ix_i}\right)$
-\begin{enumerate}\itemsep = -1pt
-\item $D(i,g)=B_i-g\times C_i$
-\item $f(g)=\sum D(i,g)x_i$
-\item $f(g)=0$時$g$為最佳解，$f(g)<0$沒有意義
-\item 因為$f(g)$單調可以二分搜$g$
-\item 或用Dinkelbach通常比較快
-\end{enumerate}
-\begin{lstlisting}[language=C++]
-binary_search(){
-	while(r-l>eps){
-		g=(l+r)/2;
-		for(i:所有元素)D[i]=B[i]-g*C[i];//D(i,g) 
-		找出一組合法x[i]使f(g)最大;
-		if(f(g)>0) l=g;
-		else r=g;
-	}
-	Ans = r;
-}
-Dinkelbach(){
-	g=任意狀態(通常設為0);
-	do{
-		Ans=g;
-		for(i:所有元素)D[i]=B[i]-g*C[i];//D(i,g) 
-		找出一組合法x[i]使f(g)最大;
-		p=0,q=0;
-		for(i:所有元素)
-			if(x[i])p+=B[i],q+=C[i];
-		g=p/q;//更新解，注意q=0的情況 
-	}while(abs(Ans-g)>EPS);
-	return Ans;
-}
-\end{lstlisting}
 
 \subsubsection{學長公式}
 \begin{enumerate}\itemsep = -3pt
 \item $\sum_{d|n} \phi(n) = n$
-\item $g(n) = \sum_{d|n} f(d) => f(n) = \sum_{d|n} \mu(d) \times g(n/d)$
 \item $\text{Harmonic series } H_n = \ln(n) + \gamma + 1/(2n) - 1/(12n^2) + 1/(120n^4)$
 \item $ \gamma =$ 0.57721566490153286060651209008240243104215
-\item 格雷碼$=n\oplus (n>>1)$
-\item $SG(A+B)=SG(A)\oplus SG(B)$
 \item 選轉矩陣$M(\theta)= \left( \begin{array}{ccc}
 cos\theta & -sin\theta \\ 
 sin\theta &  cos\theta
@@ -156,7 +83,6 @@ sin\theta &  cos\theta
 	\end{enumerate}
 \end{enumerate}
 
-
 \subsubsection{冪次,冪次和}
 \begin{enumerate}\itemsep = -3pt
 	\item $a^b\%P=a^{b\% \varphi (p)+\varphi (p)},b\geq \varphi (p)$
@@ -168,29 +94,6 @@ sin\theta &  cos\theta
 	\item $\sum_{j=0}^{m}C_j^{m+1}B_j=0,B_0=1$
 	\item 除了$B_1=-1/2$，剩下的奇數項都是$0$
 	\item $B_2=1/6,B_4=-1/30,B_6=1/42,B_8=-1/30,B_{10}=5/66,B_{12}=-691/2730,B_{14}=7/6,B_{16}=-3617/510,B_{18}=43867/798,B_{20}=-174611/330,$
-\end{enumerate}
-
-\subsubsection{Burnside's lemma}
-\begin{enumerate}\itemsep = -3pt
-	\item $|X/G| = \frac{1}{|G|}\sum_{g \in G}|X^g|$
-	\item $X^g=t^{c(g)}$
-	\item $G$表示有幾種轉法，$X^g$表示在那種轉法下，有幾種是會保持對稱的，$t$是顏色數，$c(g)$是循環節不動的面數。
-	\item 正立方體塗三顏色，轉0有$3^6$ 個元素不變，轉90有6種，每種有$3^3$不變，180有$3\times 3^4$，120(角)有$8\times 3^2$，180(邊)有$6\times 3^3$，全部$\frac{1}{24}\left(3^6+6\times 3^3 + 3 \times 3^4 + 8 \times 3^2 + 6 \times 3^3 \right) = 57$
-\end{enumerate}
-
-\subsubsection{Count on a tree}
-\begin{enumerate}\itemsep = -3pt
-	\item Rooted tree: $s_{n+1}=\frac{1}{n}\sum_{i=1}^{n}(i\times a_i\times \sum_{j=1}^{\left \lfloor  n/i\right \rfloor} a_{n+1-i\times j})$
-	\item Unrooted tree: 
-	\begin{enumerate}\itemsep = -2pt
-		\item Odd:$a_n-\sum_{i=1}^{n/2}a_ia_{n-i}$
-		\item Even:$Odd+\frac{1}{2}a_{n/2}(a_{n/2}+1)$
-	\end{enumerate}
-	\item Spanning Tree
-	\begin{enumerate}\itemsep = -2pt
-		\item 完全圖$n^n-2$
-		\item 一般圖(Kirchhoff's theorem)$M[i][i]=degree(V_i)$,$M[i][j]=-1$,if have $E(i,j)$,$0$ if no edge. delete any one row and col in $A$, $ans = det(A)$
-	\end{enumerate}
 \end{enumerate}
 
 \subsubsection{循環小數轉分數}
