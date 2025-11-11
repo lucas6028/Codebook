@@ -11,11 +11,6 @@ The intersection of two simple paths is itself either empty or a simple path.
 
 Any endpoint of that intersection must be one of the LCAs among endpoint pairs of the two paths. 
 
-Concretely the candidate nodes are
-
-lca(a,b), lca(c,d), lca(a,c), lca(a,d), lca(b,c), lca(b,d)
-
-A node z lies on path u↔v iff dist(u,z) + dist(z,v) == dist(u,v).
 
 So for each query:
 
@@ -44,6 +39,16 @@ void dfs(int u, int p = -1) {
             dfs(v, u);
         }
     }
+}
+
+int dist(int a, int b) {
+    int c = lca(a, b);
+    return depth[a] + depth[b] - 2 * depth[c];
+}
+
+// check z on path u-v
+bool on_path(int z, int u, int v) {
+    return dist(u, z) + dist(z, v) == dist(u, v);
 }
 
 void solve() {

@@ -6,20 +6,19 @@ import java.math.*;
 import java.text.*;
 
 public class Main{
-
 	public static void main(String args[]){ throws FileNotFoundException, IOException
 		Scanner sc = new Scanner(new FileReader("a.in"));
 		PrintWriter pw = new PrintWriter(new FileWriter("a.out"));
 		int n,m;
-		n=sc.nextInt();//读入下一个INT
+		n=sc.nextInt();
 		m=sc.nextInt();
 
 		for(ci=1; ci<=c; ++ci){
 			pw.println("Case #"+ci+": easy for output");
 		}
 
-		pw.close();//关闭流并释放，这个很重要，否则是没有输出的
-		sc.close();//关闭流并释放
+		pw.close();
+		sc.close();
 	}
 }
 \end{lstlisting}
