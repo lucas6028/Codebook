@@ -13,10 +13,6 @@ using namespace std;
 #endif
 
 #define int long long
-#define pii pair<int, int>
-#define ff first
-#define ss second
-#define pb push_back
 #define SPEEDY ios_base::sync_with_stdio(false); cin.tie(0); cout.tie(0);
 
 void solve() {
@@ -25,6 +21,5 @@ void solve() {
 
 signed main() {
     SPEEDY;
-
     return 0;
 }
