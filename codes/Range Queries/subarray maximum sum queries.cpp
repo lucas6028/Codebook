@@ -4,32 +4,7 @@ const int maxn = 2e5;
 int n = 0;
 int t[maxn << 1];
 
-void build() {
-    for (int i = 0; i < n; ++i) {
-        t[i + n] = 0;
-    }
-    for (int i = n - 1; i >= 1; --i) {
-        t[i] = t[i << 1] + t[i << 1 | 1];
-    }
-}
-
-void update(int idx, int val) {
-    idx += n;
-    if (t[idx] == val) return;
-    t[idx] = val;
-    for (idx >>= 1; idx >= 1; idx >>= 1) {
-        t[idx] = t[idx << 1] + t[idx << 1 | 1];
-    }
-}
-
-int query(int l, int r) {
-    int ans = 0;
-    for (l += n, r += n; l < r; l >>= 1, r >>= 1) {
-        if (l & 1) ans += t[l++];
-        if (r & 1) ans += t[--r];
-    }
-    return ans;
-}
+// Segment Tree (range sum)
 
 void solve() {
     int q;

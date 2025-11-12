@@ -1,46 +1,10 @@
 /*
-SPOJ: ORDERSET - Order statistic set
-
-In this problem, you have to maintain a dynamic set of numbers which support the two fundamental operations
-
-INSERT(S,x): if x is not in S, insert x into S
-DELETE(S,x): if x is in S, delete x from S
-and the two type of queries
-
+INSERT(S,x), DELETE(S,x)
 K-TH(S) : return the k-th smallest element of S
 COUNT(S,x): return the number of elements of S smaller than x
 */
 
-const int maxn = 2e5;
-int n = 0;
-int t[maxn << 1];
-
-void build() {
-    for (int i = 0; i < n; ++i) {
-        t[i + n] = 0;
-    }
-    for (int i = n - 1; i >= 1; --i) {
-        t[i] = t[i << 1] + t[i << 1 | 1];
-    }
-}
-
-void update(int idx, int val) {
-    idx += n;
-    if (t[idx] == val) return;
-    t[idx] = val;
-    for (idx >>= 1; idx >= 1; idx >>= 1) {
-        t[idx] = t[idx << 1] + t[idx << 1 | 1];
-    }
-}
-
-int query(int l, int r) {
-    int ans = 0;
-    for (l += n, r += n; l < r; l >>= 1, r >>= 1) {
-        if (l & 1) ans += t[l++];
-        if (r & 1) ans += t[--r];
-    }
-    return ans;
-}
+// Segment Tree (range sum)
 
 void solve() {
     int q;
@@ -95,7 +59,6 @@ void solve() {
             while (l <= r) {
                 int m = l + (r - l) / 2;
                 int rk = query(0, m + 1);
-                //printf("(m, rk): %lld, %lld\n", m, rk);
                 if (rk >= k) {
                     ans = m;
                     r = m - 1;
